@@ -16,7 +16,7 @@ import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,20 +31,29 @@ public class MainActivity extends AppCompatActivity
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1 ;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        /*I really need to add a menu bar later*/
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
 
-            //Creating the BTManager and the BTAdapter
-            final BluetoothManager bluetoothManager =(BluetoothManager)getSystemService(Context.BLUETOOTH_SERVICE);
-            final BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
-            final BluetoothLeScanner bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
+        //Creating the BTManager and the BTAdapter
+        final BluetoothManager bluetoothManager =(BluetoothManager)getSystemService(Context.BLUETOOTH_SERVICE);
+        final BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
+        final BluetoothLeScanner bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
+
+        /*Getting the device's IMEI number. This is unique to each user.*/
+        String IMEI;
+        TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        IMEI = telephonyManager.getDeviceId();
 
 
-            Button scanButton = (Button)findViewById(R.id.scanButton);
-            Button locateButton = (Button)findViewById(R.id.locateButton);
+
+        /*The buttons for the scan and locate*/
+        Button scanButton = (Button)findViewById(R.id.scanButton);
+        Button locateButton = (Button)findViewById(R.id.locateButton);
 
         /* Ensures Bluetooth is available on the device and it is enabled. If not,
         displays a dialog requesting user permission to enable Bluetooth.*/
@@ -81,7 +90,7 @@ public class MainActivity extends AppCompatActivity
                     StartScan(bluetoothLeScanner);
                 }
             });
-
+            /*The button for the locate calls the locate functions when pressed*/
             locateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -93,7 +102,7 @@ public class MainActivity extends AppCompatActivity
 
     public void StartScan(final BluetoothLeScanner bluetoothLeScanner) {
     //Perform the Scan actions here
-//        Toast.makeText(MainActivity.this, "Scanning", Toast.LENGTH_LONG).show();
+    Toast.makeText(MainActivity.this, "Scanning", Toast.LENGTH_LONG).show();
     Log.v("S","Scan Has Started");
 
     ScanSettings scanSettings = new ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build();
@@ -106,6 +115,7 @@ public class MainActivity extends AppCompatActivity
             Log.v(new_result, "Visible?");
             TextView textView = (TextView)findViewById(R.id.textView);
             textView.setText(new_result);
+
         }
 
         @Override
@@ -119,7 +129,7 @@ public class MainActivity extends AppCompatActivity
     //The list for the filters
     ArrayList<ScanFilter> filters= new ArrayList<>();
 
-    //MAC addresses of ble devices
+    //MAC addresses of ble devices that needs to be scanned. No other devices will be scanned other than these devices.
     String[] filterList = {"4B:46:E7:E9:35:EF"};
 
     //Adding the MAC addresses to the filters list
@@ -129,9 +139,11 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
+    /*The scan starts here. The MAC ID's in the filters array are the only one's which will be scanned.
+    * If they're found in the range of the BLE device, it returns a callback*/
     bluetoothLeScanner.startScan(filters,scanSettings,scanCallback);
 
+    /*This function is to stop the scan after a minute, which is the scanPeriod ( in milliseconds)*/
     Handler handler = new Handler();
     int scanPeriod = 60000;
     handler.postDelayed(new Runnable() {
