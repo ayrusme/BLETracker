@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/alertDialog"
+    >
+
+    <TextView
+        android:id="@+id/alert_dialog_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Your Register Number"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/alert_dialog_editText"
+        android:hint="Type the register number here"
+        android:focusable="true"
+        android:imeOptions="actionNext"
+        android:layout_below="@+id/alert_dialog_textview"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black"/>
+
+</RelativeLayout>

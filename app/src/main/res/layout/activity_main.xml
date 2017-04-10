@@ -10,35 +10,39 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="teamfour.bluetoothtracker.MainActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/regNum_textView"
+        android:textAlignment="center"/>
 
     <Button
         android:layout_width="75pt"
         android:layout_height="wrap_content"
         android:id="@+id/scanButton"
-        android:text="Scan"/>
+        android:text="Scan"
+        android:layout_alignBaseline="@+id/locateButton"
+        android:layout_alignBottom="@+id/locateButton"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="75pt"
         android:layout_height="wrap_content"
         android:id="@+id/locateButton"
         android:text="Locate"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/editText"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp" />
 
     <TextView
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/scanButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp"
-        android:id="@+id/textView" />
-
-
-    <!--<TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/scanButton"
-        android:id="@+id/textView1"/>-->
+        android:layout_height="match_parent"
+        android:textAlignment="center"
+        android:textSize="15dp"
+        android:id="@+id/textView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/locateButton"
+        />
 
 </RelativeLayout>

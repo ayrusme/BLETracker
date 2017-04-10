@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BluetoothTracker</string>
+    <string name="authFailed">Authentication Failed</string>
+    <string name="success">Authentication Successful</string>
 </resources>
