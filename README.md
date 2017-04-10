@@ -4,7 +4,7 @@ BLETracker is a project to create an indoor tracking system. The tool will enabl
 You'll need an Arduino board and an NRF24L01 module for the Beacons. 
 The overall architecture is like
 
-![alt tag](https://ibb.co/kpe3d5)
+![<a href="https://ibb.co/kpe3d5"><img src="https://preview.ibb.co/cDPEkk/Software_Architecture.jpg" alt="Software Architecture" border="0" /></a>]
 
 The nice folks at Element14 have a good tutorial about interfacing the arduino and the nrf24l01 module.
 
