@@ -8,6 +8,6 @@ The overall architecture is like
 
 The nice folks at Element14 have a good tutorial about interfacing the arduino and the nrf24l01 module.
 
-https://www.element14.com/community/community/design-challenges/pi-iot/blog/2016/07/10/piiot03-cheap-ble-beacons-with-nrf24l01 
+<a href="https://www.element14.com/community/community/design-challenges/pi-iot/blog/2016/07/10/piiot03-cheap-ble-beacons-with-nrf24l01">Design a BLE Beacon</a>
 
 Follow this link to set up the libraries and the beacons. 
